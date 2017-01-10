@@ -1,0 +1,16 @@
+<header>
+  <div class="row">
+    <div class="small-4 columns">
+      <% logo = image_tag("logo.png", :alt => "Application Exemple", :class => "") %>
+      <%= link_to logo, root_path %>
+    </div>
+    <div class="small-8 columns">
+      <nav class="">
+        <ul class="menu">
+          <li><%= link_to "Accueil", root_path %></li>
+          <li><%= link_to "Aide", help_path %></li>
+          <li><%= link_to "Inscription", signup_path %></li>
+        </ul>
+      </nav>
+    </div>
+</header>
