@@ -52,9 +52,15 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gravatar_image_tag (1.2.0)
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -156,6 +162,8 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  factory_girl_rails
+  gravatar_image_tag
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

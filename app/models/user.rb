@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_reader :nom, :email
+  attr_accessor :password, :password_confirmation
 =begin
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -9,4 +9,40 @@ class User < ApplicationRecord
                     :format     => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
 =end
+
+  before_save :encrypt_password
+
+  # Retour true (vrai) si le mot de passe correspond.
+ def has_password?(password_soumis)
+   encrypted_password == encrypt(password_soumis)
+ end
+
+ def self.authenticate(email, submitted_password)
+   user = find_by_email(email)
+   return nil  if user.nil?
+   return user if user.has_password?(submitted_password)
+ end
+
+  private
+
+    #def user.params
+    #    params.require(:nom, :email, :password, :password_confirmation)
+    #end
+
+    def encrypt_password
+      self.salt = make_salt if new_record?
+      self.encrypted_password = encrypt(password)
+    end
+
+    def encrypt(string)
+      secure_hash("#{salt}--#{string}")
+    end
+
+    def make_salt
+      secure_hash("#{Time.now.utc}--#{password}")
+    end
+
+    def secure_hash(string)
+      Digest::SHA2.hexdigest(string)
+    end
 end
