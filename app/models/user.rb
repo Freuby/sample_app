@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
-=begin
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :nom,  :presence => true,
@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :email, :presence   => true,
                     :format     => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-=end
+                    
 
   before_save :encrypt_password
 
@@ -24,10 +24,6 @@ class User < ApplicationRecord
  end
 
   private
-
-    #def user.params
-    #    params.require(:nom, :email, :password, :password_confirmation)
-    #end
 
     def encrypt_password
       self.salt = make_salt if new_record?
