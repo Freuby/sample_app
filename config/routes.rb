@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
   resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
 
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
   get 'help', to: 'pages#help'
   get 'signup', to: 'users#new'
+  get 'signin', to: 'sessions#new'
+  get 'signout', to: 'sessions#destroy'
 
   root :to => 'pages#home'
 
