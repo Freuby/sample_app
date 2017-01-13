@@ -1,0 +1,11 @@
+<h1>Tous les utilisateurs</h1>
+
+<div class="row">
+  <div class="medium-12 column">
+    <%= will_paginate %>
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

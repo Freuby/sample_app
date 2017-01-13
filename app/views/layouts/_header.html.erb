@@ -1,23 +1,23 @@
 <header>
-  <div class="row">
-    <div class="small-4 columns">
-      <%= link_to logo, root_path %>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text"><%= link_to logo, root_path %></li>
+        <li><%= link_to "Accueil", root_path %></li>
+        <% if sign_in? %>
+          <li><%= link_to "Utilisateurs", users_path %></li>
+          <li><%= link_to "Profil", current_user %></li>
+          <li><%= link_to "Réglages", edit_user_path(current_user) %></li>
+        <% end %>
+        <li><%= link_to "Aide", help_path %></li>
+        <% if sign_in? %>
+          <li><%= link_to "Nouveau Post", new_micropost_path %></li>
+          <li><%= link_to "Déconnexion", signout_path %></li>
+        <% else %>
+          <li><%= link_to "Inscription", signup_path %></li>
+          <li><%= link_to "S'identifier", signin_path %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="small-8 columns">
-      <nav class="">
-        <ul class="menu">
-          <li><%= link_to "Accueil", root_path %></li>
-          <% if sign_in? %>
-            <li><%= link_to "Profil", current_user %></li>
-          <% end %>
-          <li><%= link_to "Aide", help_path %></li>
-          <% if sign_in? %>
-            <li><%= link_to "Déconnexion", signout_path %></li>
-          <% else %>
-            <li><%= link_to "Inscription", signup_path %></li>
-            <li><%= link_to "S'identifier", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
-    </div>
+  </div>
 </header>
