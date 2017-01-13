@@ -5,6 +5,10 @@ class User < ApplicationRecord
   has_many :relationships, :foreign_key => "follower_id",
                            :dependent => :destroy
   has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id",
+                                   :class_name => "Relationship",
+                                   :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -46,7 +50,7 @@ class User < ApplicationRecord
    end
 
  def feed
-   Micropost.where("user_id = ?", id)
+   Micropost.from_users_followed_by(self)
  end
 
   private

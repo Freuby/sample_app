@@ -4,11 +4,13 @@
       <%= gravatar_for @user, :size => 70 %>
       <%= @user.nom %>
     </h1>
+    <%= render 'follow_form' if sign_in? %>
   </div>
   <div class="small-4 columns">
     <p><strong>Nom</strong> <%= @user.nom %></p>
     <p><strong>URL</strong> <%= link_to user_path(@user), @user %>
     <p><strong>Messages</strong> <%= @user.microposts.count %></p>
+    <%= render 'shared/stats' %>
   </div>
   <div class="small-12 columns">
     <% unless @user.microposts.empty? %>

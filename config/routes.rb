@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :sessions, :only => [:new, :create, :destroy]
   resources :micropost, :only => [:new, :create, :destroy]
+  resources :relationships, :only => [:create, :destroy]  
 
   get 'about', to: 'pages#about'
   get 'contact', to: 'pages#contact'
